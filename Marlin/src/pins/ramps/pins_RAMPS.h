@@ -144,16 +144,16 @@
 #endif
 
 #ifndef E0_STEP_PIN
-  #define E0_STEP_PIN                         26
+  #define E0_STEP_PIN                         71
 #endif
 #ifndef E0_DIR_PIN
-  #define E0_DIR_PIN                          28
+  #define E0_DIR_PIN                          72
 #endif
 #ifndef E0_ENABLE_PIN
-  #define E0_ENABLE_PIN                       24
+  #define E0_ENABLE_PIN                       73
 #endif
 #ifndef E0_CS_PIN
-  #define E0_CS_PIN                           42
+  #define E0_CS_PIN                           74
 #endif
 
 #ifndef E1_STEP_PIN

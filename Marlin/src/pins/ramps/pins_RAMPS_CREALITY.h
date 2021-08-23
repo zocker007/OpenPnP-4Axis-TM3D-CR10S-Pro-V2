@@ -53,6 +53,15 @@
 
 #include "pins_RAMPS.h"
 
+#define I_STOP_PIN                            70
+
+#define I_STEP_PIN                           26
+#define I_DIR_PIN                            28
+#define I_ENABLE_PIN                         24
+#ifndef I_CS_PIN
+  #define I_CS_PIN                           42
+#endif
+
 #ifndef BEEPER_PIN
   #define BEEPER_PIN                          37  // Always define beeper pin so Play Tone works with ExtUI
 #endif

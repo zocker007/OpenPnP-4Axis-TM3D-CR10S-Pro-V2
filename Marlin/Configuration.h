@@ -325,7 +325,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "TinyMachines3D" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "TinyMachines3D OpenPnP" // Who made the changes.
 #define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -801,6 +801,7 @@
  * Regardless of the settings, firmware-internal axis IDs are
  * I (AXIS4), J (AXIS5), K (AXIS6).
  */
+#define AXIS4_NAME 'A' // :['A', 'B', 'C', 'U', 'V', 'W']
 #if LINEAR_AXES >= 4
   #define AXIS4_NAME 'A' // :['A', 'B', 'C', 'U', 'V', 'W']
 #endif
@@ -1134,7 +1135,7 @@
 #elif ENABLED(HotendE3D)
   #define TEMP_SENSOR_0 5
 #elif ENABLED(HotendStock)
-  #define TEMP_SENSOR_0 1
+  #define TEMP_SENSOR_0 998
 #endif
 
 #if DISABLED(Dual_ChimeraDualNozzle)
@@ -1459,15 +1460,15 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-#define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 170
+//#define PREVENT_COLD_EXTRUSION
+//#define EXTRUDE_MINTEMP 170
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
-#define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 750
+//#define PREVENT_LENGTHY_EXTRUDE
+//#define EXTRUDE_MAXLENGTH 750
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -1486,10 +1487,10 @@
  * details can be tuned in Configuration_adv.h
  */
 
-#define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
-#define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
-#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
-#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
+//#define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
+//#define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
+//#define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
+//#define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
 
 //===========================================================================
 //============================= Mechanical Settings =========================
@@ -1543,7 +1544,7 @@
   #endif
   #define USE_ZMIN_PLUG
 #endif
-//#define USE_IMIN_PLUG
+#define USE_IMIN_PLUG
 //#define USE_JMIN_PLUG
 //#define USE_KMIN_PLUG
 //#define USE_XMAX_PLUG
@@ -1719,7 +1720,7 @@
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-//#define I_DRIVER_TYPE  A4988
+#define I_DRIVER_TYPE  TMC2208_STANDALONE
 //#define J_DRIVER_TYPE  A4988
 //#define K_DRIVER_TYPE  A4988
 //#define E2_DRIVER_TYPE A4988
@@ -1820,7 +1821,7 @@
   #define XYStepsmm 80
 #endif
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { XYStepsmm, XYStepsmm, ZStepsmm, (EStepsmm*EstepMultiplier) }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { XYStepsmm, XYStepsmm, ZStepsmm, 8.8888, (EStepsmm*EstepMultiplier) }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1840,8 +1841,8 @@
   #define DEFAULT_RETRACT_ACCELERATION  1000    // E acceleration for retracts
   #define DEFAULT_TRAVEL_ACCELERATION   300    // X, Y, Z acceleration for travel (non printing) moves
 #elif (ANY(MachineCR10SPro, MachineCR6, MachineCR6Max, MachineCR30))
-  #define DEFAULT_MAX_FEEDRATE          { 500, 500, 10, 70 }
-  #define DEFAULT_MAX_ACCELERATION      { 750, 750, 100, 60 }
+  #define DEFAULT_MAX_FEEDRATE          { 500, 500, 10, 1000, 70 }
+  #define DEFAULT_MAX_ACCELERATION      { 750, 750, 100, 3000, 60 }
   #define DEFAULT_ACCELERATION          750    // X, Y, Z and E acceleration for printing moves
   #define DEFAULT_RETRACT_ACCELERATION  1000    // E acceleration for retracts
   #define DEFAULT_TRAVEL_ACCELERATION   300    // X, Y, Z acceleration for travel (non printing) moves
@@ -2176,7 +2177,7 @@
      #define NOZZLE_TO_PROBE_OFFSET { -44, -10, 0 }
    #endif
 #elif ANY(MachineCR10SPro, MachineCR10Max) && ENABLED(HotendStock) && DISABLED(MicroswissDirectDrive)
-  #define NOZZLE_TO_PROBE_OFFSET { -27, 0, 0 }
+  #define NOZZLE_TO_PROBE_OFFSET { -31, -9, 0, 0 }
 #elif (ANY(ABL_BLTOUCH, ABL_EZABL,ABL_NCSW) && ENABLED(E3DHemera))
     #define NOZZLE_TO_PROBE_OFFSET { -40, 0, 0 }
 #elif ENABLED(MachineCR10SV2)
@@ -2360,7 +2361,7 @@
 #define Y_ENABLE_ON 0
 #define Z_ENABLE_ON 0
 #define E_ENABLE_ON 0 // For all extruders
-//#define I_ENABLE_ON 0
+#define I_ENABLE_ON 0
 //#define J_ENABLE_ON 0
 //#define K_ENABLE_ON 0
 
@@ -2369,7 +2370,7 @@
 #define DISABLE_X false
 #define DISABLE_Y false
 #define DISABLE_Z false
-//#define DISABLE_I false
+#define DISABLE_I false
 //#define DISABLE_J false
 //#define DISABLE_K false
 
@@ -2458,7 +2459,7 @@
     #define INVERT_E1_DIR true
   #endif
 #endif
-//#define INVERT_I_DIR false
+#define INVERT_I_DIR true
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
 // @section extruder
@@ -2510,7 +2511,7 @@
   #endif
   #define Z_HOME_DIR -1
 #endif
-//#define I_HOME_DIR -1
+#define I_HOME_DIR -1
 //#define J_HOME_DIR -1
 //#define K_HOME_DIR -1
 
@@ -2624,8 +2625,8 @@
   #elif ENABLED(MachineCR10SProV2)
     #define X_BED_SIZE 300
     #define Y_BED_SIZE 300
-    #define Z_MAX_POS 400
-    #define X_MAX_POS 315
+    #define Z_MAX_POS 50
+    #define X_MAX_POS 320
     #define Y_MAX_POS 310
     #define ClipClearance 5
   #elif ENABLED(MachineCR10SPro)
@@ -2704,8 +2705,8 @@
 #ifndef Y_MAX_POS
   #define Y_MAX_POS Y_BED_SIZE
 #endif
-//#define I_MIN_POS 0
-//#define I_MAX_POS 50
+#define I_MIN_POS -360
+#define I_MAX_POS 360
 //#define J_MIN_POS 0
 //#define J_MAX_POS 50
 //#define K_MIN_POS 0
@@ -3111,7 +3112,7 @@
 // For DELTA this is the top-center of the Cartesian print volume.
 //#define MANUAL_X_HOME_POS 0
 //#define MANUAL_Y_HOME_POS 0
-//#define MANUAL_Z_HOME_POS 0
+#define MANUAL_Z_HOME_POS 0
 //#define MANUAL_I_HOME_POS 0
 //#define MANUAL_J_HOME_POS 0
 //#define MANUAL_K_HOME_POS 0
@@ -3133,7 +3134,7 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (10*60) }
+#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (20*60), (50*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -3230,7 +3231,7 @@
 #if NONE(MachineCR10Orig, MelziHostOnly)
   #define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
   #define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between "busy" messages. Set with M113.
-  #define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
+//  #define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
 #endif
 //
 // G20/G21 Inch mode support
@@ -3390,7 +3391,7 @@
  *   M77 - Stop the print job timer
  */
 #if NONE(MachineCR10Orig, LowMemoryBoard) || ENABLED(MelziHostOnly)
- #define PRINTJOB_TIMER_AUTOSTART
+// #define PRINTJOB_TIMER_AUTOSTART
 #endif
 /**
  * Print Counter

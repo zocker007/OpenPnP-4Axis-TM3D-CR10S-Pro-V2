@@ -297,6 +297,8 @@
    */
   #define WATCH_TEMP_PERIOD 60                // Seconds
   #define WATCH_TEMP_INCREASE 2               // Degrees Celsius
+#else
+#define THERMAL_PROTECTION_HYSTERESIS 0     // Degrees Celsius
 #endif
 
 /**
@@ -330,6 +332,8 @@
   /**
    * As described above, except for the bed (M140/M190/M303).
    */
+#else
+    #define THERMAL_PROTECTION_BED_HYSTERESIS 0 // Degrees Celsius
 #endif
 
 /**
@@ -434,7 +438,7 @@
  * Disable by sending M104/M109 with no F parameter (or F0 with AUTOTEMP_PROPORTIONAL).
  */
 #if NONE(MachineCR10Orig, LowMemoryBoard, SKRMiniE3V2) || ENABLED(MelziHostOnly)
-  #define AUTOTEMP
+//  #define AUTOTEMP
 #endif
 #if ENABLED(AUTOTEMP)
   #define AUTOTEMP_OLDWEIGHT    0.98  // Factor used to weight previous readings (0.0 < value < 1.0)
@@ -820,10 +824,10 @@
 
 //#define SENSORLESS_BACKOFF_MM  { 2, 2, 0 }  // (mm) Backoff from endstops before sensorless homing
 
-#define HOMING_BUMP_MM      { 8, 8, 2 }       // (mm) Backoff from endstops after first bump
-#define HOMING_BUMP_DIVISOR { 2, 2, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+#define HOMING_BUMP_MM      { 8, 8, 2, 5 }       // (mm) Backoff from endstops after first bump
+#define HOMING_BUMP_DIVISOR { 2, 2, 4, 2 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
-#define HOMING_BACKOFF_POST_MM { 8, 8, 2 }  // (mm) Backoff from endstops after homing
+#define HOMING_BACKOFF_POST_MM { 8, 8, 2, 5 }  // (mm) Backoff from endstops after homing
 
 #if DISABLED(MachineCR30)
   #define QUICK_HOME                          // If G28 contains XY do a diagonal move first
@@ -1001,7 +1005,7 @@
 
 // @section motion
 
-#define AXIS_RELATIVE_MODES { false, false, false, false }
+#define AXIS_RELATIVE_MODES { false, false, false, false, false }
 
 // Add a Duplicate option for well-separated conjoined nozzles
 //#define MULTI_NOZZLE_DUPLICATION
@@ -1020,7 +1024,7 @@
  * Set DISABLE_INACTIVE_? 'true' to shut down axis steppers after an idle period.
  * The Deactive Time can be overridden with M18 and M84. Set to 0 for No Timeout.
  */
-#define DEFAULT_STEPPER_DEACTIVE_TIME 120
+#define DEFAULT_STEPPER_DEACTIVE_TIME 0
 #define DISABLE_INACTIVE_X true
 #define DISABLE_INACTIVE_Y true
 #define DISABLE_INACTIVE_Z true  // Set 'false' if the nozzle could fall onto your printed part!
@@ -1041,11 +1045,11 @@
 #define DEFAULT_MINTRAVELFEEDRATE     0.0     // (mm/s) Minimum travel feedrate. Set with M205 T.
 
 // Minimum time that a segment needs to take as the buffer gets emptied
-#define DEFAULT_MINSEGMENTTIME        20000   // (µs) Set with M205 B.
+#define DEFAULT_MINSEGMENTTIME        0   // (µs) Set with M205 B.
 
 // Slow down the machine if the lookahead buffer is (by default) half full.
 // Increase the slowdown divisor for larger buffer sizes.
-#define SLOWDOWN
+//#define SLOWDOWN
 #if ENABLED(SLOWDOWN)
   #if ENABLED(MachineLargeROM)
     #define SLOWDOWN_DIVISOR 8
@@ -2165,7 +2169,7 @@
 // G2/G3 Arc Support
 //
 #if NONE(MachineCR10Orig, SKRMiniE3V2)
-  #define ARC_SUPPORT                 // Requires ~3226 bytes
+//  #define ARC_SUPPORT               // Requires ~3226 bytes
 #endif
 #if ENABLED(ARC_SUPPORT)
   #define MIN_ARC_SEGMENT_MM      0.1 // (mm) Minimum length of each arc segment
@@ -2208,7 +2212,7 @@
 #endif
 
 // Moves (or segments) with fewer steps than this will be joined with the next move
-#define MIN_STEPS_PER_SEGMENT 6
+#define MIN_STEPS_PER_SEGMENT 1
 
 /**
  * Minimum delay before and after setting the stepper DIR (in ns)
@@ -2282,7 +2286,7 @@
 #if ANY(MachineCR10Orig, SKRMiniE3V2, MachineLargeROM) //melzi has more ram than a 2560
   #define BUFSIZE 16
 #else
-  #define BUFSIZE 4
+  #define BUFSIZE 16
 #endif
 // Transmission to Host Buffer Size
 // To save 386 bytes of PROGMEM (and TX_BUFFER_SIZE+3 bytes of RAM) set to 0.
@@ -2294,7 +2298,7 @@
 #if ANY(SKR13, SKR14, SKR14Turbo, SKRPRO11)
   #define TX_BUFFER_SIZE 32
 #else
-  #define TX_BUFFER_SIZE 0
+  #define TX_BUFFER_SIZE 256
 #endif
 
 // Host Receive Buffer Size
@@ -2374,7 +2378,7 @@
 
 // Printrun may have trouble receiving long strings all at once.
 // This option inserts short delays between lines of serial output.
-#define SERIAL_OVERRUN_PROTECTION
+//#define SERIAL_OVERRUN_PROTECTION
 
 // For serial echo, the number of digits after the decimal point
 //#define SERIAL_FLOAT_PRECISION 4
@@ -3764,7 +3768,7 @@
  * Auto-report temperatures with M155 S<seconds>
  */
 #if NONE(MachineCR10Orig, LowMemoryBoard)
-  #define AUTO_REPORT_TEMPERATURES
+//  #define AUTO_REPORT_TEMPERATURES
 #endif
 /**
  * Auto-report position with M154 S<seconds>
@@ -3823,7 +3827,7 @@
  *  - M206 and M428 are disabled.
  *  - G92 will revert to its behavior from Marlin 1.0.
  */
-//#define NO_WORKSPACE_OFFSETS
+#define NO_WORKSPACE_OFFSETS
 
 // Extra options for the M114 "Current Position" report
 //#define M114_DETAIL         // Use 'M114` for details to check planner calculations
@@ -3853,7 +3857,7 @@
 #endif
 
 // Support for MeatPack G-code compression (https://github.com/scottmudge/OctoPrint-MeatPack)
-//#define MEATPACK_ON_SERIAL_PORT_1
+#define MEATPACK_ON_SERIAL_PORT_1
 //#define MEATPACK_ON_SERIAL_PORT_2
 
 //#define GCODE_CASE_INSENSITIVE  // Accept G-code sent to the firmware in lowercase
@@ -3870,9 +3874,9 @@
 //#define GCODE_MOTION_MODES  // Remember the motion mode (G0 G1 G2 G3 G5 G38.X) and apply for X Y Z E F, etc.
 
 // Enable and set a (default) feedrate for all G0 moves
-//#define G0_FEEDRATE 3000 // (mm/min)
+#define G0_FEEDRATE 5000 // (mm/min)
 #ifdef G0_FEEDRATE
-  //#define VARIABLE_G0_FEEDRATE // The G0 feedrate is set by F in G0 motion mode
+  #define VARIABLE_G0_FEEDRATE // The G0 feedrate is set by F in G0 motion mode
 #endif
 
 /**

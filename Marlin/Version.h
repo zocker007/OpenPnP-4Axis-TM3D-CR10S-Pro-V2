@@ -118,7 +118,7 @@
 #define VerChar6 "N"
 #endif
 
-#define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " TM3D " VerChar1 VerChar2 VerChar3 VerChar4 VerChar5 VerChar6
+#define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION// " TM3D " VerChar1 VerChar2 VerChar3 VerChar4 VerChar5 VerChar6
 
 /**
  * The STRING_DISTRIBUTION_DATE represents when the binary file was built,
@@ -157,7 +157,7 @@
 #elif(ENABLED(MachineCRX))
   #define CUSTOM_MACHINE_NAME "TM3D CR-X"
 #elif ENABLED(MachineCR10SProV2)
-  #define CUSTOM_MACHINE_NAME "TM3D 10SProV2"
+  #define CUSTOM_MACHINE_NAME "OpenPnP TM3D 10SProV2"
 #elif(ENABLED(MachineCR10SPro))
   #define CUSTOM_MACHINE_NAME "TM3D 10S Pro"
 #elif(ENABLED(MachineCR10Max))
