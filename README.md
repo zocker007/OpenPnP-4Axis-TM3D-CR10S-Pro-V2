@@ -3,6 +3,7 @@
 Uses the Hotend-Fan output to control the soleniod (with M106/M107) and the extruder stepper driver for the rotation stepper. Instead of the extruder, the driver is used by the fourth linear axis with Letter 'A' (internal Letter 'I'), which OpenPnP uses for rotation.
 
 Based on:
+- [InsanityAutomation Marlin Creality Branch](https://github.com/InsanityAutomation/Marlin/tree/CrealityDwin_2.0)
 - https://github.com/mgrl/MarlinOnRamps4OpenPnP/tree/openPnPoptimized
 - https://github.com/bilsef/Marlin/commits/Teensy4.1_PnP_6axis
 
