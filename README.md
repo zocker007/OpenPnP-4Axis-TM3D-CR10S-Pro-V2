@@ -1,10 +1,12 @@
-﻿## Creality CR10S Pro V2 OpenPnP 4-Axis firmware based on TM3D
+﻿### Adapted code of CR10S Pro V2 to work with OpenPnP as 4-Axis CNC machine
 
-This repo contains modifications for Creality CR10S Pro V2 firmware to work with OpenPnP Pick and Place machine Software with 4 linear Axes. The code is based on TM3D firmware for Creality printers:
+Uses the Hotend-Fan output to control the soleniod (with M106/M107) and the extruder stepper driver for the rotation stepper. Instead of the extruder, the driver is used by the fourth linear axis with Letter 'A' (internal Letter 'I'), which OpenPnP uses for rotation.
 
-[TM3D CrealityDwin_2.0](https://github.com/InsanityAutomation/Marlin/tree/CrealityDwin_2.0)
+Based on:
+https://github.com/mgrl/MarlinOnRamps4OpenPnP/tree/openPnPoptimized
+https://github.com/bilsef/Marlin/commits/Teensy4.1_PnP_6axis
 
-With hardware modifications, you can use the Printer as pick and place machine with the ability to switch between printer function and pick and place machine.
+This repo contains modifications for Creality CR10S Pro V2 firmware to work with OpenPnP Pick and Place machine Software with 4 linear Axes. The code is based on TM3D firmware for Creality printers. With hardware modifications, you can use the Printer as pick and place machine with the ability to switch between printer function and pick and place machine.
 
 
 Screen files are archived with [7-Zip](https://www.7-zip.org/) simply because it came out 1/5 the file size of a zip file. That added up fast!
