@@ -5,7 +5,7 @@ Uses the Hotend-Fan output to control the soleniod (with M106/M107) and the extr
 Based on:
 - [InsanityAutomation Marlin Creality Branch](https://github.com/InsanityAutomation/Marlin/tree/CrealityDwin_2.0)
 - https://github.com/mgrl/MarlinOnRamps4OpenPnP/tree/openPnPoptimized
-- https://github.com/bilsef/Marlin/commits/Teensy4.1_PnP_6axis
+- https://github.com/bilsef/Marlin/tree/Teensy4.1_PnP_6axis
 
 This repo contains modifications for Creality CR10S Pro V2 firmware to work with OpenPnP Pick and Place machine Software with 4 linear Axes. The code is based on TM3D firmware for Creality printers. With hardware modifications, you can use the Printer as pick and place machine with the ability to switch between printer function and pick and place machine.
 
