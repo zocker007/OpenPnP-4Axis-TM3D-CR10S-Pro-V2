@@ -787,7 +787,7 @@
  *
  * :[3, 4, 5, 6]
  */
-//#define LINEAR_AXES 3
+#define LINEAR_AXES 4
 
 /**
  * Axis codes for additional axes:
@@ -802,7 +802,6 @@
  * Regardless of the settings, firmware-internal axis IDs are
  * I (AXIS4), J (AXIS5), K (AXIS6).
  */
-#define AXIS4_NAME 'A' // :['A', 'B', 'C', 'U', 'V', 'W']
 #if LINEAR_AXES >= 4
   #define AXIS4_NAME 'A' // :['A', 'B', 'C', 'U', 'V', 'W']
 #endif
