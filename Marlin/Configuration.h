@@ -1822,7 +1822,7 @@
   #define XYStepsmm 80
 #endif
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { XYStepsmm, XYStepsmm, ZStepsmm, 8.8888, (EStepsmm*EstepMultiplier) }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { XYStepsmm, XYStepsmm, ZStepsmm, 8.888888888, (EStepsmm*EstepMultiplier) }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1842,8 +1842,8 @@
   #define DEFAULT_RETRACT_ACCELERATION  1000    // E acceleration for retracts
   #define DEFAULT_TRAVEL_ACCELERATION   300    // X, Y, Z acceleration for travel (non printing) moves
 #elif (ANY(MachineCR10SPro, MachineCR6, MachineCR6Max, MachineCR30))
-  #define DEFAULT_MAX_FEEDRATE          { 500, 500, 10, 1000, 70 }
-  #define DEFAULT_MAX_ACCELERATION      { 750, 750, 100, 3000, 60 }
+  #define DEFAULT_MAX_FEEDRATE          { 500, 500, 50, 5000, 70 }
+  #define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 250, 10000, 60 }
   #define DEFAULT_ACCELERATION          750    // X, Y, Z and E acceleration for printing moves
   #define DEFAULT_RETRACT_ACCELERATION  1000    // E acceleration for retracts
   #define DEFAULT_TRAVEL_ACCELERATION   300    // X, Y, Z acceleration for travel (non printing) moves
@@ -1926,7 +1926,7 @@
     #define DEFAULT_YJERK 5.0
   #endif
   #define DEFAULT_ZJERK  0.3
-  //#define DEFAULT_IJERK  0.3
+  #define DEFAULT_IJERK  50
   //#define DEFAULT_JJERK  0.3
   //#define DEFAULT_KJERK  0.3
 
@@ -2178,7 +2178,7 @@
      #define NOZZLE_TO_PROBE_OFFSET { -44, -10, 0 }
    #endif
 #elif ANY(MachineCR10SPro, MachineCR10Max) && ENABLED(HotendStock) && DISABLED(MicroswissDirectDrive)
-  #define NOZZLE_TO_PROBE_OFFSET { -31, 9, 0, 0 }
+  #define NOZZLE_TO_PROBE_OFFSET { -31, 9, 1.5, 0 }
 #elif (ANY(ABL_BLTOUCH, ABL_EZABL,ABL_NCSW) && ENABLED(E3DHemera))
     #define NOZZLE_TO_PROBE_OFFSET { -40, 0, 0 }
 #elif ENABLED(MachineCR10SV2)
