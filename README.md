@@ -1,14 +1,27 @@
-﻿### Adapted code of CR10S Pro V2 to work with OpenPnP as 4-Axis CNC machine
+﻿#### Adapted code of CR10S Pro V2 to work with OpenPnP as 4-Axis CNC machine
 
-Uses the Hotend-Fan output to control the soleniod (with M106/M107) and the extruder stepper driver for the rotation stepper. Instead of the extruder, the driver is used by the fourth linear axis with Letter 'A' (internal Letter 'I'), which OpenPnP uses for rotation.
+Uses the Hotend-Fan output to control the solenoid (with M106/M107) and the extruder stepper driver for the rotation stepper. Instead of the extruder, the driver is used by the fourth linear axis with Letter 'A' (internal Letter 'I'), which OpenPnP uses for rotation.
 
-Based on:
+# Based on:
 - [InsanityAutomation Marlin Creality Branch](https://github.com/InsanityAutomation/Marlin/tree/CrealityDwin_2.0)
 - https://github.com/mgrl/MarlinOnRamps4OpenPnP/tree/openPnPoptimized
 - https://github.com/bilsef/Marlin/tree/Teensy4.1_PnP_6axis
 
-This repo contains modifications for Creality CR10S Pro V2 firmware to work with OpenPnP Pick and Place machine Software with 4 linear Axes. The code is based on TM3D firmware for Creality printers. With hardware modifications, you can use the Printer as pick and place machine with the ability to switch between printer function and pick and place machine.
+This repo contains modifications for Creality CR10S Pro V2 firmware to work with OpenPnP pick and place machine software with 4 linear axes. The code is based on TM3D firmware for Creality printers. With hardware modifications, you can use the printer as pick and place machine with the ability to switch between printer function and pick and place machine.
 
+# Needed additional hardware besides the 3D-Printer (linked parts used by me):
+- 24V vacuum pump ([Ebay](https://www.ebay.de/itm/353644012079))
+- vacuum tube min. 1m with 6mm outer diameter (=2mm inner diameter) ([2mm inner diameter, Ebay](https://www.ebay.de/itm/174382089856))
+- 24V solenoid with joints for 6mm vacuum tube ([35A-ACA-DDAA-1BA, AliExpress](https://de.aliexpress.com/item/32887481957.html))
+- stepper motor NEMA 11 with hollow shaft and M5 threads on both sides ([AliExpress](https://de.aliexpress.com/item/32900066758.html))
+- rotary joint with M5 for vacuum tube ([KSH06-M5, AliExpress](https://de.aliexpress.com/item/1005001342989979.html) for 6mm tube and M5)
+- vacuum nozzles in different sizes and nozzle holder with M5 ([Samsung CP40, AliExpress](https://de.aliexpress.com/item/4000037264622.html))
+- camera module for downlooking camera ([ELP 720p, AliExpress](https://de.aliexpress.com/item/32346777227.html))
+- camera module for uplooking camera ([ELP 1080p, AliExpress](https://de.aliexpress.com/item/32261191143.html))
+- 3D printed parts (will be added to this repo):
+    - stepper motor mounting angle for NEMA 11 steppers
+    - downlooking camera holder
+    - uplooking camera holder
 
 Screen files are archived with [7-Zip](https://www.7-zip.org/) simply because it came out 1/5 the file size of a zip file. That added up fast!
 
