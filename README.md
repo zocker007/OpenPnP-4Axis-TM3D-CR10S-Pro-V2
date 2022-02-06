@@ -18,7 +18,7 @@ This repo contains modifications for Creality CR10S Pro V2 firmware to work with
 - vacuum nozzles in different sizes and nozzle holder with M5 ([Samsung CP40, AliExpress](https://de.aliexpress.com/item/4000037264622.html))
 - camera module for downlooking camera ([ELP 720p, AliExpress](https://de.aliexpress.com/item/32346777227.html))
 - camera module for uplooking camera ([ELP 1080p, AliExpress](https://de.aliexpress.com/item/32261191143.html))
-- 3D printed parts (will be added to this repo):
+- 3D printed parts (STL files in 3D_Print_Models subfolder):
     - stepper motor mounting angle for NEMA 11 steppers
     - downlooking camera holder
     - uplooking camera holder
